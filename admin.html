@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaitWise Admin — Product Backend & User Analytics</title>
+  <meta name="description" content="Official WaitWise owner dashboard to monitor extension installs, user logins, and Razorpay advertiser orders.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2310b981'/><text x='50' y='68' font-size='50' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --bg-dark: #0a0d14;
+      --card-bg: rgba(17, 24, 39, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --accent-green: #10b981;
+      --accent-blue: #00b8ff;
+      --accent-orange: #ff6200;
+    }
+    body {
+      background: var(--bg-dark);
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .admin-container {
+      max-width: 1200px;
+      margin: 30px auto 80px;
+      padding: 0 20px;
+    }
+    /* Auth Gate */
+    #auth-gate {
+      max-width: 420px;
+      margin: 120px auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 36px 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      backdrop-filter: blur(16px);
+    }
+    .auth-input {
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 15px;
+      margin-bottom: 16px;
+      outline: none;
+    }
+    .auth-input:focus {
+      border-color: var(--accent-green);
+    }
+    /* Admin Header */
+    .admin-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(15, 23, 42, 0.7);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    .kpi-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+    }
+    .kpi-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .kpi-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      font-family: monospace;
+    }
+    .kpi-sub {
+      font-size: 12.5px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+    /* Tabs */
+    .admin-tabs {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 14.5px;
+      font-weight: 600;
+      padding: 10px 18px;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      color: #fff;
+    }
+    .tab-btn.active {
+      color: var(--accent-green);
+      border-bottom-color: var(--accent-green);
+    }
+    /* Tables */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      overflow-x: auto;
+      margin-bottom: 30px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      color: #94a3b8;
+      padding: 12px 14px;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(255,255,255,0.02);
+    }
+    .data-table td {
+      padding: 14px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: #cbd5e1;
+    }
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+    .badge-green { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-blue { background: rgba(0, 184, 255, 0.15); color: #00b8ff; border: 1px solid rgba(0, 184, 255, 0.3); }
+    .badge-orange { background: rgba(255, 98, 0, 0.15); color: #ff8c42; border: 1px solid rgba(255, 98, 0, 0.3); }
+    .badge-gray { background: rgba(255, 255, 255, 0.08); color: #94a3b8; }
+    /* Activity feed */
+    .activity-feed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .activity-feed-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 13.5px;
+    }
+    .toast-alert {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast-alert.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient background mesh -->
+  <div class="bg-mesh-pattern"></div>
+
+  <!-- AUTHENTICATION GATE -->
+  <div id="auth-gate">
+    <div style="width: 48px; height: 48px; border-radius: 12px; background: #10b981; color: #fff; font-size: 24px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">W</div>
+    <h2 style="font-size: 22px; margin-bottom: 6px; color: #fff;">WaitWise Product Backend</h2>
+    <p style="font-size: 13.5px; color: #94a3b8; margin-bottom: 24px;">Enter owner master key to view user logins, extension installs, and Razorpay orders.</p>
+    <form id="auth-form">
+      <input type="password" id="admin-pass-input" class="auth-input" placeholder="Enter master key (default: waitwise2026)" autofocus required>
+      <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+        <span>Unlock Backend &rarr;</span>
+      </button>
+    </form>
+    <p style="font-size: 12px; color: #64748b; margin-top: 14px;">Master key default: <code>waitwise2026</code> or <code>admin</code></p>
+  </div>
+
+  <!-- MAIN ADMIN DASHBOARD -->
+  <div id="admin-main" style="display: none;">
+    <!-- Navigation bar -->
+    <header class="admin-nav-bar">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 34px; height: 34px; border-radius: 8px; background: #10b981; color: #fff; font-size: 18px; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;">W</div>
+        <div>
+          <strong style="color: #fff; font-size: 16px;">WaitWise Backend Control</strong>
+          <span style="font-size: 12px; color: #34d399; margin-left: 8px;">● Live Tracking Active</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="index.html" class="btn btn-secondary" style="font-size: 13px; padding: 6px 14px;">Landing Page</a>
+        <a href="dashboard.html" class="btn btn-secondary" style="font-size: 13px; padding: 6px 14px;">User Dashboard</a>
+        <a href="advertise.html" class="btn btn-secondary" style="font-size: 13px; padding: 6px 14px;">Advertiser Studio</a>
+        <button id="btn-logout" class="btn btn-secondary" style="font-size: 13px; padding: 6px 12px; color: #ef4444; border-color: rgba(239, 68, 68, 0.3);">Logout</button>
+      </div>
+    </header>
+
+    <main class="admin-container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 14px;">
+        <div>
+          <h1 style="font-size: 28px; font-weight: 800; margin: 0 0 6px; color: #fff;">Owner Analytics & Product Backend</h1>
+          <p style="color: #94a3b8; font-size: 14px; margin: 0;">Real-time overview of extension users, logins, and Razorpay advertiser payments.</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-secondary" id="btn-refresh" style="font-size: 13px; padding: 8px 14px;">🔄 Refresh Data</button>
+          <button class="btn btn-secondary" id="btn-export-all" style="font-size: 13px; padding: 8px 14px;">📥 Export CSV</button>
+        </div>
+      </div>
+
+      <!-- KPI METRICS GRID -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Total Logged-in Users</div>
+          <div class="kpi-number" id="kpi-users" style="color: #10b981;">0</div>
+          <div class="kpi-sub">Emails authenticated on website / extension</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Extension Installs</div>
+          <div class="kpi-number" id="kpi-installs" style="color: #00b8ff;">0</div>
+          <div class="kpi-sub">Active device IDs on Edge & Chrome</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Razorpay Ad Revenue</div>
+          <div class="kpi-number" id="kpi-revenue" style="color: #ff8c42;">$0.00</div>
+          <div class="kpi-sub" id="kpi-revenue-inr">₹0.00 collected</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">Monetized Wait Turns</div>
+          <div class="kpi-number" id="kpi-turns">0</div>
+          <div class="kpi-sub">ChatGPT, Claude, & Gemini waits</div>
+        </div>
+      </div>
+
+      <!-- TAB BUTTONS -->
+      <div class="admin-tabs">
+        <button class="tab-btn active" data-tab="tab-users">👤 User Logins & Accounts (<span id="count-users">0</span>)</button>
+        <button class="tab-btn" data-tab="tab-installs">🧩 Extension Installs (<span id="count-installs">0</span>)</button>
+        <button class="tab-btn" data-tab="tab-orders">💳 Razorpay Ad Orders (<span id="count-orders">0</span>)</button>
+        <button class="tab-btn" data-tab="tab-activity">⚡ Live Activity Feed</button>
+        <button class="tab-btn" data-tab="tab-settings">⚙️ Gateway & Cloud Sync</button>
+      </div>
+
+      <!-- TAB 1: USERS & LOGINS -->
+      <div id="tab-users" class="tab-pane">
+        <div class="table-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <h3 style="margin: 0; font-size: 18px; color: #fff;">Registered & Logged-in Users</h3>
+            <button class="btn btn-secondary" onclick="WaitWiseBackend.exportCSV('users')" style="font-size: 12.5px; padding: 6px 12px;">Export Users CSV</button>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>User Email</th>
+                <th>Device ID</th>
+                <th>Browser / OS</th>
+                <th>Wait Turns</th>
+                <th>Dwell Seconds</th>
+                <th>Earned ($)</th>
+                <th>Last Active</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="table-users-body">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: EXTENSION INSTALLS -->
+      <div id="tab-installs" class="tab-pane" style="display: none;">
+        <div class="table-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <h3 style="margin: 0; font-size: 18px; color: #fff;">Browser Extension Installations</h3>
+            <button class="btn btn-secondary" onclick="WaitWiseBackend.exportCSV('installs')" style="font-size: 12.5px; padding: 6px 12px;">Export Installs CSV</button>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Device ID (UUID)</th>
+                <th>Target Browser</th>
+                <th>Version</th>
+                <th>Installed At</th>
+                <th>Last Ping</th>
+                <th>Turns</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="table-installs-body">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: RAZORPAY ORDERS -->
+      <div id="tab-orders" class="tab-pane" style="display: none;">
+        <div class="table-container">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <h3 style="margin: 0; font-size: 18px; color: #fff;">Razorpay Advertiser Transactions</h3>
+            <button class="btn btn-secondary" onclick="WaitWiseBackend.exportCSV('orders')" style="font-size: 12.5px; padding: 6px 12px;">Export Orders CSV</button>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Payment ID</th>
+                <th>Advertiser Email</th>
+                <th>Sponsor Brand</th>
+                <th>Impressions</th>
+                <th>Amount ($)</th>
+                <th>Gateway</th>
+                <th>Status</th>
+                <th>Date & Time</th>
+              </tr>
+            </thead>
+            <tbody id="table-orders-body">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 4: ACTIVITY FEED -->
+      <div id="tab-activity" class="tab-pane" style="display: none;">
+        <div class="table-container">
+          <h3 style="margin: 0 0 16px; font-size: 18px; color: #fff;">Real-Time Activity Stream</h3>
+          <div class="activity-feed-list" id="activity-feed-body">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: GATEWAY & CLOUD SYNC -->
+      <div id="tab-settings" class="tab-pane" style="display: none;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+          <!-- Razorpay Settings Card -->
+          <div class="table-container">
+            <h3 style="margin: 0 0 10px; font-size: 18px; color: #fff;">Razorpay Payment Gateway Setup</h3>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px;">
+              Configure your Razorpay Key ID to accept real payments via UPI, Credit/Debit cards, Netbanking, and QR codes on <code>advertise.html</code>.
+            </p>
+            <div style="margin-bottom: 12px;">
+              <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: 700;">RAZORPAY KEY ID (OPTIONAL)</label>
+              <input type="text" id="setting-razorpay-key" class="auth-input" placeholder="rzp_live_... or rzp_test_...">
+            </div>
+            <div style="margin-bottom: 14px;">
+              <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: 700;">RAZORPAY HOSTED PAYMENT LINK (OPTIONAL)</label>
+              <input type="text" id="setting-razorpay-link" class="auth-input" placeholder="https://rzp.io/l/your-link">
+            </div>
+            <p style="font-size: 11.5px; color: #38bdf8; margin-top: -6px; margin-bottom: 14px;">
+              ⚡ WaitWise includes built-in UPI QR & Cards checkout out of the box so payments never fail.
+            </p>
+            <button class="btn btn-primary" id="btn-save-razorpay" style="font-size: 13.5px; padding: 10px 18px;">
+              Save Razorpay Settings
+            </button>
+          </div>
+
+          <!-- Supabase Optional Sync Card -->
+          <div class="table-container">
+            <h3 style="margin: 0 0 10px; font-size: 18px; color: #fff;">Supabase Cloud Database (Optional)</h3>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px;">
+              Connect a free Supabase project to automatically sync all remote extension installs and user emails worldwide into postgres tables.
+            </p>
+            <div style="margin-bottom: 12px;">
+              <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: 700;">SUPABASE URL</label>
+              <input type="text" id="setting-supabase-url" class="auth-input" placeholder="https://xyz.supabase.co">
+            </div>
+            <div style="margin-bottom: 14px;">
+              <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 6px; font-weight: 700;">SUPABASE ANON KEY</label>
+              <input type="password" id="setting-supabase-key" class="auth-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+            </div>
+            <button class="btn btn-primary" id="btn-save-supabase" style="font-size: 13.5px; padding: 10px 18px;">
+              Save Cloud Sync
+            </button>
+          </div>
+        </div>
+
+        <!-- SQL Schema Reference Box -->
+        <div class="table-container" style="margin-top: 20px;">
+          <h4 style="margin: 0 0 8px; font-size: 15px; color: #fff;">Free Supabase SQL Schema (Copy & Run in Supabase SQL Editor)</h4>
+          <pre style="background: rgba(0,0,0,0.5); padding: 16px; border-radius: 8px; color: #a5f3fc; font-size: 12.5px; overflow-x: auto;">
+CREATE TABLE IF NOT EXISTS users (
+  id TEXT PRIMARY KEY,
+  email TEXT UNIQUE,
+  device_id TEXT,
+  browser TEXT,
+  wait_turns INT DEFAULT 0,
+  dwell_seconds NUMERIC DEFAULT 0,
+  total_earned NUMERIC DEFAULT 0,
+  last_active TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  payment_id TEXT PRIMARY KEY,
+  email TEXT,
+  sponsor TEXT,
+  impressions TEXT,
+  amount NUMERIC,
+  gateway TEXT DEFAULT 'Razorpay',
+  status TEXT DEFAULT 'Captured',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+          </pre>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast-alert" id="toast">Changes saved successfully!</div>
+
+  <!-- Load Backend Module -->
+  <script src="backend.js"></script>
+
+  <script>
+    // Master Access Auth
+    const authGate = document.getElementById('auth-gate');
+    const adminMain = document.getElementById('admin-main');
+    const authForm = document.getElementById('auth-form');
+    const passInput = document.getElementById('admin-pass-input');
+    const btnLogout = document.getElementById('btn-logout');
+
+    const VALID_PASSWORDS = ['waitwise2026', 'admin', 'waitwise'];
+
+    function checkAuth() {
+      if (sessionStorage.getItem('waitwise_admin_auth') === 'true') {
+        authGate.style.display = 'none';
+        adminMain.style.display = 'block';
+        renderDashboard();
+      } else {
+        authGate.style.display = 'block';
+        adminMain.style.display = 'none';
+      }
+    }
+
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = passInput.value.trim().toLowerCase();
+      if (VALID_PASSWORDS.includes(val)) {
+        sessionStorage.setItem('waitwise_admin_auth', 'true');
+        checkAuth();
+      } else {
+        alert('Incorrect master key. Try: waitwise2026');
+      }
+    });
+
+    btnLogout.addEventListener('click', () => {
+      sessionStorage.removeItem('waitwise_admin_auth');
+      checkAuth();
+    });
+
+    // Tab Navigation
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+        btn.classList.add('active');
+        const target = btn.getAttribute('data-tab');
+        if (target && document.getElementById(target)) {
+          document.getElementById(target).style.display = 'block';
+        }
+      });
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg || 'Action completed';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+
+    // Render Dashboard Data
+    function renderDashboard() {
+      const users = WaitWiseBackend.getUsers();
+      const installs = WaitWiseBackend.getInstalls();
+      const orders = WaitWiseBackend.getOrders();
+      const activity = WaitWiseBackend.getActivity();
+
+      // Counts in Tabs
+      document.getElementById('count-users').textContent = users.length;
+      document.getElementById('count-installs').textContent = installs.length;
+      document.getElementById('count-orders').textContent = orders.length;
+
+      // KPIs
+      document.getElementById('kpi-users').textContent = users.length;
+      document.getElementById('kpi-installs').textContent = installs.length;
+
+      const totalRevenue = orders.reduce((sum, o) => sum + (parseFloat(o.amount) || 0), 0);
+      document.getElementById('kpi-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
+      document.getElementById('kpi-revenue-inr').textContent = `₹${(totalRevenue * 86.5).toFixed(0)} via Razorpay`;
+
+      const totalTurns = users.reduce((sum, u) => sum + (u.waitTurns || 0), 0);
+      document.getElementById('kpi-turns').textContent = totalTurns.toLocaleString();
+
+      // 1. Render Users Table
+      const userBody = document.getElementById('table-users-body');
+      userBody.innerHTML = '';
+      if (users.length === 0) {
+        userBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #94a3b8;">No registered users yet.</td></tr>';
+      } else {
+        users.forEach(u => {
+          const tr = document.createElement('tr');
+          const lastActiveDate = new Date(u.lastActive).toLocaleDateString() + ' ' + new Date(u.lastActive).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          tr.innerHTML = `
+            <td><strong style="color: #fff;">${escapeHtml(u.email)}</strong></td>
+            <td><code style="font-size: 11.5px; color: #94a3b8;">${escapeHtml(u.deviceId || '-')}</code></td>
+            <td>${escapeHtml(u.browser || 'Browser')}</td>
+            <td style="font-weight: 700; color: #10b981;">${u.waitTurns || 0}</td>
+            <td>${(u.dwellSeconds || 0).toFixed(1)}s</td>
+            <td style="font-weight: 700; color: #34d399;">$${(u.totalEarned || 0).toFixed(5)}</td>
+            <td style="font-size: 12px; color: #94a3b8;">${lastActiveDate}</td>
+            <td><span class="badge badge-green">${escapeHtml(u.status || 'Active')}</span></td>
+          `;
+          userBody.appendChild(tr);
+        });
+      }
+
+      // 2. Render Installs Table
+      const instBody = document.getElementById('table-installs-body');
+      instBody.innerHTML = '';
+      if (installs.length === 0) {
+        instBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #94a3b8;">No extension installs registered yet.</td></tr>';
+      } else {
+        installs.forEach(i => {
+          const tr = document.createElement('tr');
+          const instDate = new Date(i.installedAt).toLocaleDateString() + ' ' + new Date(i.installedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          tr.innerHTML = `
+            <td><strong style="font-family: monospace; color: #38bdf8;">${escapeHtml(i.deviceId)}</strong></td>
+            <td>${escapeHtml(i.browser || 'Chromium')}</td>
+            <td><span class="badge badge-blue">v${escapeHtml(i.version || '1.0.1')}</span></td>
+            <td style="font-size: 12px; color: #94a3b8;">${instDate}</td>
+            <td style="font-size: 12px; color: #94a3b8;">Just now</td>
+            <td style="font-weight: 700; color: #fff;">${i.turnsCount || 0}</td>
+            <td><span class="badge badge-green">● ${escapeHtml(i.status || 'Online')}</span></td>
+          `;
+          instBody.appendChild(tr);
+        });
+      }
+
+      // 3. Render Orders Table
+      const ordBody = document.getElementById('table-orders-body');
+      ordBody.innerHTML = '';
+      if (orders.length === 0) {
+        ordBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: #94a3b8;">No Razorpay orders yet.</td></tr>';
+      } else {
+        orders.forEach(o => {
+          const tr = document.createElement('tr');
+          const ordDate = new Date(o.createdAt).toLocaleDateString() + ' ' + new Date(o.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          tr.innerHTML = `
+            <td><code style="color: #ff8c42; font-weight: 700;">${escapeHtml(o.paymentId)}</code></td>
+            <td><strong>${escapeHtml(o.email)}</strong></td>
+            <td>${escapeHtml(o.sponsor)}</td>
+            <td>${escapeHtml(o.impressions)}</td>
+            <td style="font-weight: 800; color: #10b981;">$${(parseFloat(o.amount) || 0).toFixed(2)}</td>
+            <td><span class="badge badge-blue">Razorpay</span></td>
+            <td><span class="badge badge-green">${escapeHtml(o.status || 'Captured')}</span></td>
+            <td style="font-size: 12px; color: #94a3b8;">${ordDate}</td>
+          `;
+          ordBody.appendChild(tr);
+        });
+      }
+
+      // 4. Render Activity Feed
+      const actBody = document.getElementById('activity-feed-body');
+      actBody.innerHTML = '';
+      if (activity.length === 0) {
+        actBody.innerHTML = '<p style="color: #94a3b8;">No recent activity.</p>';
+      } else {
+        activity.forEach(a => {
+          const div = document.createElement('div');
+          div.className = 'activity-feed-item';
+          const time = new Date(a.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+          let badgeClass = 'badge-green';
+          if (a.type === 'install') badgeClass = 'badge-blue';
+          if (a.type === 'payment') badgeClass = 'badge-orange';
+          div.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="badge ${badgeClass}">${escapeHtml((a.type || 'EVENT').toUpperCase())}</span>
+              <span style="color: #f1f5f9;">${escapeHtml(a.message)}</span>
+            </div>
+            <span style="font-size: 12px; color: #64748b;">${time}</span>
+          `;
+          actBody.appendChild(div);
+        });
+      }
+
+      // 5. Settings Fields
+      const rzpInput = document.getElementById('setting-razorpay-key');
+      if (rzpInput) rzpInput.value = WaitWiseBackend.getRazorpayKey();
+      const rzpLinkInput = document.getElementById('setting-razorpay-link');
+      if (rzpLinkInput) rzpLinkInput.value = WaitWiseBackend.getRazorpayLink();
+
+      const supCfg = WaitWiseBackend.getSupabaseConfig();
+      if (supCfg) {
+        document.getElementById('setting-supabase-url').value = supCfg.url || '';
+        document.getElementById('setting-supabase-key').value = supCfg.anonKey || '';
+      }
+    }
+
+    document.getElementById('btn-refresh').addEventListener('click', () => {
+      renderDashboard();
+      showToast('Dashboard data refreshed!');
+    });
+
+    document.getElementById('btn-export-all').addEventListener('click', () => {
+      WaitWiseBackend.exportCSV('users');
+      setTimeout(() => WaitWiseBackend.exportCSV('orders'), 500);
+    });
+
+    document.getElementById('btn-save-razorpay').addEventListener('click', () => {
+      const key = document.getElementById('setting-razorpay-key').value.trim();
+      const link = document.getElementById('setting-razorpay-link').value.trim();
+      WaitWiseBackend.setRazorpayKey(key);
+      WaitWiseBackend.setRazorpayLink(link);
+      showToast('Razorpay settings updated successfully!');
+    });
+
+    document.getElementById('btn-save-supabase').addEventListener('click', () => {
+      const url = document.getElementById('setting-supabase-url').value.trim();
+      const key = document.getElementById('setting-supabase-key').value.trim();
+      WaitWiseBackend.setSupabaseConfig(url, key);
+      showToast('Supabase configuration saved!');
+    });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // Initialize
+    checkAuth();
+  </script>
+</body>
+</html>

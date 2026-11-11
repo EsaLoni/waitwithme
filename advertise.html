@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advertise on WaitWise — One line. Total focus.</title>
+  <meta name="description" content="WaitWise places a single sponsored line in front of AI power users while their model is thinking. No banners, no clutter, just your message at the moment of peak attention.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2310b981'/><text x='50' y='68' font-size='50' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient Background Mesh -->
+  <div class="bg-mesh-pattern"></div>
+
+  <!-- Site Navigation (Only How it works, FAQ, Advertise) -->
+  <header class="site-nav">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">W</div>
+        <span>WaitWise</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="advertise.html" class="nav-highlight" style="color: var(--emerald-400); font-weight: 700;">Advertise</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn btn-secondary nav-dash-btn" style="border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #fff; padding: 8px 18px; border-radius: 9999px; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: all 0.2s ease;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+        <button class="btn btn-primary btn-glow" data-open-modal="install">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="21.17" y1="8" x2="12" y2="8"></line>
+            <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+            <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+          </svg>
+          <span>Add to Chrome</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Centered Studio Header & Self-Serve Checkout Studio (Matching Image 5) -->
+    <section class="hero-section" style="padding: 60px 0 40px;">
+      <div class="container">
+        <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          <h1 class="hero-title" style="text-align: center; margin: 0 auto 16px; font-size: clamp(36px, 5.5vw, 64px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15;">
+            One line. Total focus.
+          </h1>
+
+          <p class="hero-subtitle" style="text-align: center; max-width: 640px; margin: 0 auto 36px; font-size: 17px; line-height: 1.6; color: var(--text-secondary);">
+            WaitWise places a single sponsored line in front of AI power users while their model is thinking. No banners, no clutter, just your message at the moment of peak attention.
+          </p>
+        </div>
+
+        <!-- The Self-Serve Campaign Checkout Studio Form -->
+        <form class="adv-checkout-card" id="adv-checkout-form">
+          <div class="adv-field-group">
+            <label class="adv-label" for="adv-email">Your email</label>
+            <input type="email" id="adv-email" placeholder="you@company.com" required class="prompt-input" style="width: 100%;">
+          </div>
+
+          <div class="adv-field-group">
+            <label class="adv-label" for="adv-name">Sponsor name</label>
+            <input type="text" id="adv-name" placeholder="Your company or product name" value="Supabase" required class="prompt-input" style="width: 100%;">
+          </div>
+
+          <div class="adv-field-group">
+            <label class="adv-label">Icon (optional)</label>
+            <span class="adv-sublabel">A small square logo shown next to your ad. JPG, PNG, or WEBP. Large images are resized automatically.</span>
+            <div style="display: flex; gap: 12px; align-items: center; margin-top: 4px;">
+              <input type="file" id="adv-icon-file" accept="image/*" class="prompt-input" style="padding: 8px 12px; font-size: 12px; width: auto; flex: 1;">
+              <input type="text" id="adv-icon-letter" maxlength="2" value="S" placeholder="S" class="prompt-input" style="width: 60px; text-align: center; font-weight: 800;" title="Or type 1-2 letters icon">
+            </div>
+          </div>
+
+          <div class="adv-field-group">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <label class="adv-label" for="adv-copy">Ad copy</label>
+              <span id="adv-char-count" style="font-size: 11px; font-family: var(--font-mono); color: var(--emerald-400);">58/64 characters (min 3)</span>
+            </div>
+            <input type="text" id="adv-copy" maxlength="64" value="Fast HNSW vector search with SQL simplicity & pgvector." placeholder="One line. Make it count." required class="prompt-input" style="width: 100%;">
+          </div>
+
+          <!-- LIVE PREVIEW CONTAINER (Matching Image 5) -->
+          <div class="adv-field-group">
+            <label class="adv-label">LIVE PREVIEW</label>
+            <span class="adv-sublabel">Your ad shows in the chat while the AI is thinking, right under the user's message.</span>
+            <div class="adv-preview-container">
+              <div class="adv-preview-user">
+                <div class="adv-preview-user-bubble">
+                  Help me plan a weekend getaway
+                </div>
+              </div>
+              <div class="adv-preview-ad-row">
+                <span class="adv-preview-icon" id="adv-preview-icon">S</span>
+                <span class="adv-preview-text" id="adv-preview-text">Fast HNSW vector search with SQL simplicity & pgvector.</span>
+              </div>
+              <div class="adv-preview-thinking">
+                <span class="pulse-dot"></span>
+                <span>Thinking...</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="adv-field-group">
+            <label class="adv-label" for="adv-url">Destination URL</label>
+            <input type="url" id="adv-url" value="https://supabase.com" placeholder="https://yoursite.com" required class="prompt-input" style="width: 100%;">
+          </div>
+
+          <div class="adv-field-group">
+            <label class="adv-label">Bid per 1,000 impressions</label>
+            <span class="adv-sublabel">Higher bids get more impressions. Every active campaign is eligible to show, weighted by bid, so a $5 bid earns roughly 2.5x the impressions of a $2 bid.</span>
+            <div class="adv-bid-pills" id="adv-bid-group">
+              <button type="button" class="adv-bid-btn" data-cpm="2.00">$2.00</button>
+              <button type="button" class="adv-bid-btn" data-cpm="2.50">$2.50</button>
+              <button type="button" class="adv-bid-btn selected" data-cpm="5.00">$5.00</button>
+              <button type="button" class="adv-bid-btn" data-cpm="custom">Custom $</button>
+              <input type="number" id="adv-custom-cpm-input" min="1" max="50" step="0.5" placeholder="$" class="prompt-input" style="display: none; width: 90px; padding: 6px 10px; font-size: 13px;">
+            </div>
+          </div>
+
+          <div class="adv-field-group">
+            <label class="adv-label" for="adv-blocks">Blocks (1 block = 1,000 impressions)</label>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: 4px;">
+              <input type="number" id="adv-blocks" min="1" max="1000" value="1" class="prompt-input" style="width: 110px; font-weight: 700; font-size: 16px;">
+              <span id="adv-block-label" style="font-size: 14px; color: var(--text-secondary);">= 1,000 impressions</span>
+            </div>
+          </div>
+
+          <!-- Total Due Box -->
+          <div class="adv-total-box">
+            <span style="font-size: 15px; font-weight: 600; color: #fff;">Total due now:</span>
+            <strong id="adv-total-price" style="font-size: 28px; font-weight: 900; color: var(--emerald-400); font-family: var(--font-mono);">$5.00</strong>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-glow" id="adv-submit-btn" style="width: 100%; justify-content: center; margin-top: 6px;">
+            <span>Continue to checkout</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+
+          <p style="font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 2px; margin-bottom: 0;">
+            Campaigns are reviewed before going live, usually within 24 hours. You can edit your ad while it is pending review.
+          </p>
+
+          <p style="font-size: 12.5px; color: var(--text-secondary); text-align: center; margin-top: -6px; margin-bottom: 0;">
+            Prefer email? Send your campaign to <a href="mailto:advertisers@waitwise.ai" style="color: var(--emerald-400); text-decoration: underline;">advertisers@waitwise.ai</a> and we'll set up checkout for you.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Clean Minimal Footer -->
+  <footer class="site-footer" style="border-top: 1px solid var(--card-border); padding: 40px 0 24px;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+      <a href="index.html" class="brand-logo" style="margin-bottom: 4px;">
+        <div class="logo-icon">W</div>
+        <span>WaitWise</span>
+      </a>
+      <div style="display: flex; gap: 24px; font-size: 14px; color: var(--text-secondary);">
+        <a href="index.html#how-it-works">How it works</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="advertise.html" style="color: var(--emerald-400);">Advertise</a>
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin: 0;">
+        © 2026 WaitWise. Privacy-first, zero-prompt-reading sponsored intelligence.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Checkout Success / Review Modal with Razorpay -->
+  <div class="modal-backdrop" id="modal-checkout-success">
+    <div class="modal-content" style="max-width: 520px; text-align: center; border: 1px solid rgba(2, 132, 199, 0.35); box-shadow: 0 24px 64px rgba(0,0,0,0.8), 0 0 40px rgba(2, 132, 199, 0.1);">
+      <button class="modal-close-btn" data-close-modal="checkout-success">×</button>
+      
+      <!-- View 1: Order Review & Payment Selection -->
+      <div id="checkout-prep-view">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 12px;">
+          <div style="width: 32px; height: 32px; border-radius: 8px; background: #0c2340; border: 1px solid #0284c7; display: flex; align-items: center; justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#00b8ff"><path d="M12 2L2 19.5h20L12 2zm0 4.2l6.5 11.3H5.5L12 6.2z"/></svg>
+          </div>
+          <span style="font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -0.02em;">Razorpay Secure Checkout</span>
+          <span class="badge" style="background: rgba(2, 132, 199, 0.2); color: #38bdf8; font-size: 11px;">100% Verified</span>
+        </div>
+
+        <p style="color: var(--text-secondary); font-size: 13.5px; margin-bottom: 16px;">
+          Review your campaign order details and choose your preferred payment method:
+        </p>
+
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px 16px; text-align: left; font-size: 13px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px;">
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Advertiser:</span><strong id="modal-rev-email" style="color: #fff;">-</strong></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Sponsor:</span><strong id="modal-rev-name" style="color: #fff;">-</strong></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Impressions:</span><strong id="modal-rev-impr" style="color: #fff;">-</strong></div>
+          <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--card-border); padding-top: 8px;">
+            <span style="font-weight: 700; color: #fff;">Total Due Now:</span>
+            <div>
+              <strong id="modal-rev-total" style="color: #38bdf8; font-size: 17px;">$5.00</strong>
+              <span id="modal-rev-inr" style="color: #94a3b8; font-size: 13px; margin-left: 6px;">(~ ₹425 INR)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Mode Selector Tabs -->
+        <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+          <button type="button" id="tab-btn-upi" class="btn btn-secondary" style="flex: 1; padding: 8px 10px; font-size: 13px; font-weight: 700; background: rgba(2, 132, 199, 0.15); border-color: #0284c7; color: #38bdf8;">
+            📱 UPI / QR Code
+          </button>
+          <button type="button" id="tab-btn-card" class="btn btn-secondary" style="flex: 1; padding: 8px 10px; font-size: 13px; font-weight: 700;">
+            💳 Cards / NetBanking
+          </button>
+        </div>
+
+        <!-- Sub-panel 1: UPI / QR Code -->
+        <div id="panel-upi" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 12px;">
+            <div style="background: #fff; padding: 8px; border-radius: 8px; display: inline-block;">
+              <!-- Crisp Simulated Razorpay UPI QR -->
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="#0c2340">
+                <rect width="100" height="100" fill="white"/>
+                <rect x="10" y="10" width="26" height="26" fill="#0c2340"/>
+                <rect x="14" y="14" width="18" height="18" fill="white"/>
+                <rect x="18" y="18" width="10" height="10" fill="#0c2340"/>
+                <rect x="64" y="10" width="26" height="26" fill="#0c2340"/>
+                <rect x="68" y="14" width="18" height="18" fill="white"/>
+                <rect x="72" y="18" width="10" height="10" fill="#0c2340"/>
+                <rect x="10" y="64" width="26" height="26" fill="#0c2340"/>
+                <rect x="14" y="68" width="18" height="18" fill="white"/>
+                <rect x="18" y="72" width="10" height="10" fill="#0c2340"/>
+                <rect x="42" y="16" width="6" height="12" fill="#0c2340"/>
+                <rect x="52" y="24" width="6" height="16" fill="#0c2340"/>
+                <rect x="42" y="44" width="16" height="16" fill="#0284c7"/>
+                <rect x="66" y="52" width="12" height="6" fill="#0c2340"/>
+                <rect x="74" y="64" width="14" height="8" fill="#0c2340"/>
+                <rect x="44" y="74" width="10" height="14" fill="#0c2340"/>
+                <rect x="64" y="78" width="8" height="10" fill="#0c2340"/>
+              </svg>
+            </div>
+            <div style="text-align: left; font-size: 12.5px; color: #cbd5e1;">
+              <strong style="color: #fff; display: block; font-size: 13.5px; margin-bottom: 4px;">Scan with Any UPI App</strong>
+              <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+                <span class="badge" style="background: rgba(255,255,255,0.08); font-size: 10.5px;">GPay</span>
+                <span class="badge" style="background: rgba(255,255,255,0.08); font-size: 10.5px;">PhonePe</span>
+                <span class="badge" style="background: rgba(255,255,255,0.08); font-size: 10.5px;">Paytm</span>
+              </div>
+              <span style="color: #94a3b8; font-size: 11.5px;">Or enter UPI Virtual ID below:</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="input-upi-id" placeholder="e.g. yourname@okhdfcbank" value="esaloni313@okhdfcbank" class="prompt-input" style="font-size: 13px; padding: 10px 12px; flex: 1;">
+            <button type="button" id="btn-pay-upi" class="btn btn-primary" style="background: linear-gradient(135deg, #0284c7, #0369a1); font-weight: 700; white-space: nowrap; padding: 10px 16px;">
+              Pay via UPI &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Sub-panel 2: Cards / Netbanking -->
+        <div id="panel-card" style="display: none; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; margin-bottom: 16px; text-align: left;">
+          <div style="margin-bottom: 10px;">
+            <label style="font-size: 11.5px; color: #94a3b8; display: block; margin-bottom: 4px;">CARD NUMBER</label>
+            <input type="text" id="input-card-number" placeholder="4111 •••• •••• 4242" value="4111 2222 3333 4242" class="prompt-input" style="width: 100%; box-sizing: border-box; font-family: monospace; font-size: 13.5px; padding: 8px 12px;">
+          </div>
+          <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+            <div style="flex: 1;">
+              <label style="font-size: 11.5px; color: #94a3b8; display: block; margin-bottom: 4px;">EXPIRY</label>
+              <input type="text" id="input-card-exp" placeholder="MM/YY" value="12/28" class="prompt-input" style="width: 100%; box-sizing: border-box; font-family: monospace; font-size: 13.5px; padding: 8px 12px;">
+            </div>
+            <div style="flex: 1;">
+              <label style="font-size: 11.5px; color: #94a3b8; display: block; margin-bottom: 4px;">CVV</label>
+              <input type="password" id="input-card-cvv" placeholder="•••" value="888" maxlength="4" class="prompt-input" style="width: 100%; box-sizing: border-box; font-family: monospace; font-size: 13.5px; padding: 8px 12px;">
+            </div>
+          </div>
+          <button type="button" id="btn-pay-card" class="btn btn-primary" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #0284c7, #0369a1); font-weight: 700; padding: 10px 16px;">
+            Pay via Razorpay Secure Card &rarr;
+          </button>
+        </div>
+
+        <!-- Primary Trigger Button (Also runs instant Razorpay verification) -->
+        <button class="btn btn-primary btn-lg btn-glow" id="btn-razorpay-checkout" style="width: 100%; justify-content: center; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border-color: #38bdf8; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          <span id="btn-checkout-label">Pay with Razorpay (₹425) &rarr;</span>
+        </button>
+
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-size: 11.5px; color: var(--text-muted); flex-wrap: wrap;">
+          <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px;">💳 Credit/Debit Cards</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px;">📱 UPI (GPay/PhonePe)</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px;">🏦 Netbanking</span>
+          <span style="display: inline-flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 4px;">🔒 256-Bit Encrypted</span>
+        </div>
+      </div>
+
+      <!-- View 2: Processing Payment State -->
+      <div id="checkout-processing-view" style="display: none; padding: 30px 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; border: 3px solid rgba(2, 132, 199, 0.2); border-top-color: #0284c7; animation: spin 0.8s linear infinite; margin: 0 auto 20px;"></div>
+        <h3 style="font-size: 20px; color: #fff; margin-bottom: 6px;">Securing Razorpay Payment...</h3>
+        <p style="color: #94a3b8; font-size: 13.5px; margin: 0;">Authorizing transaction through Razorpay network. Do not refresh.</p>
+      </div>
+
+      <!-- View 3: Razorpay Payment Captured Success View -->
+      <div id="checkout-success-view" style="display: none; padding: 10px 0;">
+        <div style="width: 58px; height: 58px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: #10b981;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h3 style="font-size: 24px; margin-bottom: 6px; color: #fff;">Payment Verified!</h3>
+        <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
+          Your campaign payment has been processed via Razorpay.
+        </p>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 16px; text-align: left; font-size: 13px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Razorpay ID:</span><code id="success-pay-id" style="color: #38bdf8; font-weight: 700;">pay_xxx</code></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Sponsor:</span><strong id="success-sponsor" style="color: #fff;">-</strong></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Amount Paid:</span><strong id="success-amount" style="color: #10b981;">$5.00</strong></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Gateway:</span><span class="badge" style="background: rgba(2,132,199,0.2); color: #38bdf8;">Razorpay Verified</span></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-secondary);">Campaign Status:</span><span class="badge" style="background: rgba(16,185,129,0.2); color: #10b981;">Active & Queued</span></div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-secondary" onclick="document.getElementById('modal-checkout-success').classList.remove('open'); document.body.style.overflow='';" style="flex: 1; justify-content: center;">Close</button>
+          <a href="admin.html" class="btn btn-primary" style="flex: 1; justify-content: center; text-decoration: none;">View in Admin &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Install Modal -->
+  <div class="modal-backdrop" id="modal-install">
+    <div class="modal-content" style="max-width: 520px;">
+      <button class="modal-close-btn" data-close-modal="install">×</button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div class="logo-icon" style="width: 48px; height: 48px; margin: 0 auto 12px; font-size: 24px;">W</div>
+        <h3 style="font-size: 22px; margin-bottom: 8px;">Install WaitWise Extension</h3>
+        <p style="color: var(--text-secondary); font-size: 14px;">
+          Available for Microsoft Edge, Google Chrome, Brave, Arc, and all Chromium browsers.
+        </p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+        <div style="display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 12px 16px; border-radius: 10px;">
+          <span style="font-size: 18px;">1️⃣</span>
+          <span style="font-size: 13.5px;">Click <strong>Load Unpacked</strong> in <code>edge://extensions</code> or <code>chrome://extensions</code></span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 12px 16px; border-radius: 10px;">
+          <span style="font-size: 18px;">2️⃣</span>
+          <span style="font-size: 13.5px;">Select the built <code>waitwise-extension-v1.0.1</code> folder</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 12px 16px; border-radius: 10px;">
+          <span style="font-size: 18px;">3️⃣</span>
+          <span style="font-size: 13.5px;">Open ChatGPT, Claude, or Gemini and earn as AI generates!</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg btn-glow" style="width: 100%; justify-content: center;" onclick="window.open('https://partner.microsoft.com/dashboard/microsoftedge', '_blank');">
+        <span>Microsoft Edge Add-ons Store</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Official Razorpay Checkout SDK & Backend -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="backend.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

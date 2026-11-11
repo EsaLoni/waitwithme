@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaitWise Dashboard — Live Earnings & Whop Payouts</title>
+  <meta name="description" content="View your live WaitWise earnings, verified Whop payout progress, and referral rewards.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2310b981'/><text x='50' y='68' font-size='50' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .dash-container {
+      max-width: 900px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+    .dash-card {
+      background: rgba(18, 22, 28, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
+    }
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s ease;
+    }
+    .stat-box:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted, #94a3b8);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .stat-val {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      font-family: var(--font-mono, monospace);
+    }
+    .stat-val.highlight {
+      color: #10b981;
+    }
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6200, #10b981);
+      width: 12%;
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+    .ref-box {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .ref-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    .activity-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+    .activity-table th {
+      text-align: left;
+      padding: 12px 10px;
+      color: var(--text-muted, #94a3b8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .activity-table td {
+      padding: 14px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .badge-success { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient Background Mesh -->
+  <div class="bg-mesh-pattern"></div>
+
+  <!-- Navigation -->
+  <header class="site-nav">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">W</div>
+        <span>WaitWise</span>
+        <span class="brand-tag">Dashboard</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#how-it-works">How it works</a></li>
+          <li><a href="advertise.html">Advertise</a></li>
+          <li><a href="admin.html" style="color: #38bdf8; font-weight: 600;">Admin</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn btn-secondary" style="font-size: 13.5px; padding: 7px 16px; border-radius: 9999px; text-decoration: none; color: #fff;">&larr; Back to Home</a>
+        <a href="https://whop.com" target="_blank" rel="noopener" class="badge" style="background: rgba(255, 98, 0, 0.15); color: #ff8c42; border: 1px solid rgba(255, 98, 0, 0.35); padding: 7px 14px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+          <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #ff6200;"></span>
+          <span>Whop Payouts</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="dash-container">
+    <div class="dash-header">
+      <div>
+        <h1 style="font-size: 30px; font-weight: 800; margin-bottom: 6px; color: #fff;">Earnings & Account Dashboard</h1>
+        <p style="color: #94a3b8; font-size: 15px;">Monetizing AI wait-time across ChatGPT, Claude, and Gemini.</p>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <span class="badge badge-success">● Connected & Earning</span>
+      </div>
+    </div>
+
+    <!-- Active Account Details Bar -->
+    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px 18px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(16,185,129,0.18); color: #10b981; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;">✓</div>
+        <div>
+          <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #94a3b8; font-weight: 600;">Signed in User Account</span>
+          <div style="font-weight: 700; color: #fff; font-size: 14.5px;" id="current-user-email">esaloni313@gmail.com</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 16px; font-size: 13px; color: #94a3b8; flex-wrap: wrap;">
+        <span>Device ID: <code style="color: #38bdf8;" id="current-user-device">dev_e91b4c72</code></span>
+        <span>Browser: <strong style="color: #e2e8f0;" id="current-user-browser">Microsoft Edge</strong></span>
+        <button id="btn-switch-account" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #e2e8f0; border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: 12.5px; font-weight: 600;">Switch Email</button>
+      </div>
+    </div>
+
+    <!-- Live Stats Grid -->
+    <div class="dash-grid">
+      <div class="stat-box">
+        <div class="stat-label">Total Earnings</div>
+        <div class="stat-val highlight" id="earnings-val">$0.00741</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">AI Wait Turns</div>
+        <div class="stat-val" id="turns-val">14</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Average Dwell</div>
+        <div class="stat-val">6.8s</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Next Payout Tier</div>
+        <div class="stat-val">$10.00</div>
+      </div>
+    </div>
+
+    <!-- Whop Cash Payout Card (Prominently Visible) -->
+    <div class="dash-card" style="border: 1px solid rgba(255, 98, 0, 0.3); background: radial-gradient(circle at top right, rgba(255, 98, 0, 0.08), transparent 60%), rgba(18, 22, 28, 0.85);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+            <span style="background: #ff6200; color: #fff; width: 24px; height: 24px; border-radius: 6px; font-weight: 900; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; font-family: sans-serif;">W</span>
+            <h2 style="font-size: 20px; font-weight: 800; margin: 0; color: #fff;">Whop Instant Payouts</h2>
+            <span class="badge" style="background: rgba(255, 98, 0, 0.2); color: #ff8c42; border: 1px solid rgba(255, 98, 0, 0.4);">Official Payout Partner</span>
+          </div>
+          <p style="color: #94a3b8; font-size: 14.5px; max-width: 540px; margin: 0 0 12px; line-height: 1.5;">
+            Automatic cashouts direct to your bank account (ACH), Visa/Mastercard debit, or PayPal powered by Whop Payments. 0% withdrawal processing fee.
+          </p>
+        </div>
+        <a href="https://whop.com" target="_blank" rel="noopener" class="btn btn-primary" style="background: linear-gradient(135deg, #ff6200, #ff8c42); border: none; font-weight: 700; padding: 12px 22px; border-radius: 10px; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 18px rgba(255, 98, 0, 0.35);">
+          <span>Connect Whop Account</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Progress Bar -->
+      <div style="margin-top: 14px;">
+        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: #94a3b8;">
+          <span>Threshold Progress: <strong style="color: #10b981;">$0.00741</strong> / $10.00</span>
+          <span>$9.9925 remaining to instant cashout</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referral Card -->
+    <div class="dash-card">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap;">
+        <div>
+          <h2 style="font-size: 18px; font-weight: 700; margin-bottom: 4px; color: #fff;">Invite Friends, Earn $10</h2>
+          <p style="color: #94a3b8; font-size: 14px; margin: 0;">Get $10 once your friend earns their first $10. They get $1 instantly upon signing up.</p>
+        </div>
+        <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">
+          $10 Bonus Active
+        </span>
+      </div>
+      <div class="ref-box">
+        <input type="text" class="ref-input" value="https://waitwise-alpha.vercel.app/r/waitwise-user" readonly id="ref-link">
+        <button class="btn btn-secondary" id="copy-ref-btn" style="white-space: nowrap; padding: 10px 18px;">Copy Referral Link</button>
+      </div>
+    </div>
+
+    <!-- Recent Turns Table -->
+    <div class="dash-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+        <h2 style="font-size: 18px; font-weight: 700; color: #fff;">Recent Monetized AI Turns</h2>
+        <span style="font-size: 12px; color: #94a3b8;">Synced from WaitWise extension</span>
+      </div>
+      <table class="activity-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Platform</th>
+            <th>Sponsor</th>
+            <th>Dwell Time</th>
+            <th>Payout Earned</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color: #94a3b8; font-size: 13px;">Just now</td>
+            <td>ChatGPT 4o</td>
+            <td>Warp Terminal</td>
+            <td>8.4s</td>
+            <td style="color: #10b981; font-weight: 700;">+$0.0025</td>
+            <td><span class="badge badge-success">Credited</span></td>
+          </tr>
+          <tr>
+            <td style="color: #94a3b8; font-size: 13px;">4m ago</td>
+            <td>ChatGPT o3-mini</td>
+            <td>Supabase</td>
+            <td>12.1s</td>
+            <td style="color: #10b981; font-weight: 700;">+$0.0025</td>
+            <td><span class="badge badge-success">Credited</span></td>
+          </tr>
+          <tr>
+            <td style="color: #94a3b8; font-size: 13px;">18m ago</td>
+            <td>Claude 3.5 Sonnet</td>
+            <td>Cursor AI</td>
+            <td>5.2s</td>
+            <td style="color: #10b981; font-weight: 700;">+$0.0024</td>
+            <td><span class="badge badge-success">Credited</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="toast-msg" id="toast">Referral link copied to clipboard!</div>
+
+  <script src="backend.js"></script>
+  <script>
+    // Copy referral link
+    document.getElementById('copy-ref-btn').addEventListener('click', () => {
+      const input = document.getElementById('ref-link');
+      navigator.clipboard.writeText(input.value).then(() => {
+        showToast('Referral link copied to clipboard!');
+      });
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    // Backend Device & Login Synchronization
+    function initUserSession() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlDeviceId = urlParams.get('device_id');
+      const isNewInstall = urlParams.get('installed');
+
+      let currentEmail = WaitWiseBackend.getCurrentUserEmail();
+      let deviceId = urlDeviceId || localStorage.getItem('waitwise_device_id') || 'dev_e91b4c72-4a01';
+
+      if (urlDeviceId) {
+        localStorage.setItem('waitwise_device_id', urlDeviceId);
+      }
+
+      // Detect Browser
+      const ua = navigator.userAgent;
+      let browserName = 'Chromium Browser';
+      if (ua.includes('Edg/')) browserName = 'Microsoft Edge';
+      else if (ua.includes('Chrome/')) browserName = 'Google Chrome';
+      else if (ua.includes('Firefox/')) browserName = 'Mozilla Firefox';
+
+      // Update UI elements
+      const emailEl = document.getElementById('current-user-email');
+      const deviceEl = document.getElementById('current-user-device');
+      const browserEl = document.getElementById('current-user-browser');
+
+      if (emailEl) emailEl.textContent = currentEmail;
+      if (deviceEl) deviceEl.textContent = deviceId;
+      if (browserEl) browserEl.textContent = browserName;
+
+      // Register install & login into backend
+      WaitWiseBackend.recordInstall(deviceId, browserName, '1.0.1');
+      WaitWiseBackend.recordLogin(currentEmail, deviceId, { waitTurns: 14, totalEarned: 0.00741 });
+
+      if (isNewInstall) {
+        showToast('WaitWise extension linked successfully!');
+      }
+
+      // Switch Account button
+      const switchBtn = document.getElementById('btn-switch-account');
+      if (switchBtn) {
+        switchBtn.addEventListener('click', () => {
+          const newEmail = prompt('Enter your user email address:', currentEmail);
+          if (newEmail && newEmail.includes('@')) {
+            WaitWiseBackend.setCurrentUserEmail(newEmail);
+            if (emailEl) emailEl.textContent = newEmail.trim().toLowerCase();
+            showToast('Account switched to: ' + newEmail.trim().toLowerCase());
+          }
+        });
+      }
+    }
+
+    initUserSession();
+  </script>
+</body>
+</html>

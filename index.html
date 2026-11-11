@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WaitWise — Get paid while AI thinks</title>
+  <meta name="description" content="Monetize the dead space while ChatGPT, Claude, and Gemini generate responses. Earn 50% revenue share on privacy-first, single-line sponsored messages.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%2310b981'/><text x='50' y='68' font-size='50' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient Background Mesh -->
+  <div class="bg-mesh-pattern"></div>
+
+  <!-- Navigation -->
+  <header class="site-nav">
+    <div class="container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">W</div>
+        <span>WaitWise</span>
+        <span class="brand-tag">v1.0 Ready</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="advertise.html">Advertise</a></li>
+          <li><a href="dashboard.html" style="color: var(--emerald-400); font-weight: 700;">Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn btn-secondary nav-dash-btn" style="border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #fff; padding: 8px 18px; border-radius: 9999px; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: all 0.2s ease;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+        <button class="btn btn-primary btn-glow" data-open-modal="install">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="21.17" y1="8" x2="12" y2="8"></line>
+            <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+            <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+          </svg>
+          <span>Add to Chrome</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section (Centered & High-Impact matching Image 6) -->
+    <section class="hero-section" style="padding: 56px 0 36px;">
+      <div class="container">
+        <div class="hero-content" style="max-width: 860px; margin: 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center;">
+          <h1 class="hero-title" style="text-align: center; margin: 0 auto 16px; font-size: clamp(40px, 6vw, 68px); font-weight: 800; line-height: 1.1;">
+            Get paid while <br>
+            <span class="gradient-text">AI thinks.</span>
+          </h1>
+
+          <p class="hero-subtitle" style="text-align: center; margin: 0 auto 18px; max-width: 660px; font-size: 18px; line-height: 1.6; color: var(--text-secondary);">
+            WaitWise shows one sponsored line while ChatGPT, Claude, and Gemini are generating, and pays you half the ad revenue.
+          </p>
+
+          <!-- Whop Partner & Live Dashboard Quick Pills -->
+          <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap;">
+            <a href="https://whop.com" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 98, 0, 0.1); border: 1px solid rgba(255, 98, 0, 0.35); padding: 7px 16px; border-radius: 9999px; text-decoration: none; transition: transform 0.2s ease, border-color 0.2s ease;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: #ff6200; border-radius: 4px; font-weight: 900; font-size: 11px; color: #fff; font-family: sans-serif;">W</span>
+              <span style="font-size: 13.5px; font-weight: 700; color: #ff8c42;">Whop Verified Payouts</span>
+              <span style="font-size: 12px; color: #cbd5e1; opacity: 0.9;">· Instant ACH, Card & PayPal</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c42" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <a href="dashboard.html" style="display: inline-flex; align-items: center; gap: 7px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.35); padding: 7px 16px; border-radius: 9999px; text-decoration: none; color: #34d399; font-size: 13.5px; font-weight: 700;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+              <span>Earnings Dashboard &rarr;</span>
+            </a>
+          </div>
+
+          <!-- Live Counter Strip (Click-Driven & Genuine) -->
+          <div class="live-counter-strip" title="Click to verify live turn counting">
+            <div class="counter-digits-container" style="position: relative;">
+              <span class="counter-digit-text" id="live-counter-val">548,219</span>
+              <span id="counter-click-badge" style="position: absolute; right: -48px; top: -10px; background: #10b981; color: #fff; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease;">+1</span>
+            </div>
+            <div class="counter-sub-caption">
+              <span class="pulse-dot"></span>
+              <span style="font-weight: 700; color: var(--emerald-400); letter-spacing: 0.05em; font-size: 11px; text-transform: uppercase;">● LIVE</span>
+              <span style="color: var(--text-secondary); font-size: 13.5px;">Total ad impressions logged · Counts on user interaction</span>
+            </div>
+          </div>
+
+          <!-- Add to Chrome CTA Button -->
+          <div class="hero-cta-group" style="justify-content: center; margin-bottom: 24px;">
+            <button class="btn btn-primary btn-lg btn-glow" data-open-modal="install" style="border-radius: 9999px; padding: 14px 32px; font-size: 16px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="4"></circle>
+                <line x1="21.17" y1="8" x2="12" y2="8"></line>
+                <line x1="3.95" y1="6.06" x2="8.54" y2="14"></line>
+                <line x1="10.88" y1="21.94" x2="15.46" y2="14"></line>
+              </svg>
+              <span>Add to Chrome &rarr;</span>
+            </button>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--text-muted); margin-top: -12px; margin-bottom: 36px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Safe, free and privacy-first</span>
+          </div>
+        </div>
+
+        <!-- Interactive AI Generation & Ad Simulator Mockup (Matching Image 6) -->
+        <div class="simulator-mockup-outer" id="simulator">
+          <!-- Floating Badge Top Right: Your Balance -->
+          <div class="floating-badge-balance">
+            <span class="badge-label"><span class="pulse-dot"></span> YOUR BALANCE</span>
+            <span class="badge-value" id="sim-floating-balance">$12.522</span>
+          </div>
+
+          <!-- The macOS Window Mockup -->
+          <div class="simulator-card" style="box-shadow: 0 24px 64px rgba(0,0,0,0.8), 0 0 40px rgba(16,185,129,0.08);">
+            <div class="simulator-header" style="justify-content: space-between;">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 9999px; padding: 4px 18px; font-size: 12px; color: #94a3b8; font-family: var(--font-mono); display: flex; align-items: center; gap: 6px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span>chatgpt.com</span>
+              </div>
+              <div class="dwell-counter" id="live-dwell-pill">Dwell: 0.0s / 5.0s</div>
+            </div>
+
+            <div class="chat-thread" id="chat-thread" style="padding: 24px;">
+              <!-- Turn 1: User Prompt (Matching Image 6) -->
+              <div class="chat-turn user-turn">
+                <div class="user-bubble" style="background: #2f2f2f; color: #ececec; border-radius: 18px; padding: 10px 18px; font-size: 14px;">
+                  Help me plan a weekend getaway
+                </div>
+              </div>
+
+              <!-- WaitWise Sponsored Line (Matching Image 6) -->
+              <div class="ad-insertion-slot" id="sim-ad-slot" style="margin: 14px 0;">
+                <div class="sim-sponsored-card" id="sim-ad-card" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px;">
+                  <span class="ad-logo-pill" style="background: var(--emerald-500); color: #fff; width: 20px; height: 20px; border-radius: 4px; font-size: 11px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center;">W</span>
+                  <span class="ad-label" style="font-size: 10.5px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.05em;">SPONSORED</span>
+                  <span style="color: var(--text-muted); font-size: 11px;">·</span>
+                  <a href="https://duolingo.com" target="_blank" rel="noopener" class="ad-text-link" id="sim-ad-link" style="color: #60a5fa; text-decoration: none; font-size: 13.5px; font-weight: 500;">
+                    Learn a language while you wait
+                  </a>
+                  <button class="ad-close-btn" id="sim-ad-dismiss" title="Dismiss" style="margin-left: auto; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 16px;">×</button>
+                </div>
+              </div>
+
+              <!-- Turn 1: AI Assistant Streaming Response -->
+              <div class="chat-turn assistant-turn">
+                <div class="assistant-content" id="sim-ai-response" style="font-size: 14px; line-height: 1.6; color: #d1d5db;">
+                  <div class="adv-preview-thinking" id="sim-thinking-indicator" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 13px; margin-bottom: 8px;">
+                    <span class="pulse-dot"></span>
+                    <span>Thinking...</span>
+                  </div>
+                  <p>I'd love to help you plan! Are you in the mood for a cozy nature escape, a vibrant city break, or a relaxing coastal retreat?</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Simulator Interactive Controller -->
+            <div class="simulator-controls">
+              <div class="quick-prompts-row" style="display: flex; gap: 8px; margin-bottom: 10px; overflow-x: auto; padding-bottom: 2px;">
+                <button type="button" class="quick-btn" data-prompt="Help me plan a weekend getaway">✈️ Weekend getaway</button>
+                <button type="button" class="quick-btn" data-prompt="Explain distributed consensus in Raft">⚡ Raft Consensus</button>
+                <button type="button" class="quick-btn" data-prompt="Write a quicksort function in Rust with comments">🦀 Rust Quicksort</button>
+              </div>
+              <div class="input-simulation-box">
+                <input type="text" id="sim-custom-prompt" placeholder="Ask anything, e.g. 'Help me plan a weekend getaway'..." value="Help me plan a weekend getaway">
+                <button class="btn btn-primary" id="sim-submit-btn">
+                  <span>Send Prompt</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+              </div>
+              <div class="sim-help-text">
+                Click <strong>Send Prompt</strong> to watch WaitWise mount the sponsored line and credit your balance!
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Badge Bottom Right: 50% revenue -->
+          <div class="floating-badge-rev">
+            50% of ad revenue goes to you
+          </div>
+        </div>
+
+        <!-- Works where you already wait Strip (Image 6) -->
+        <div class="works-where-strip">
+          <div class="works-label">WORKS WHERE YOU ALREADY WAIT</div>
+          <div class="works-pills-row">
+            <div class="works-pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              <span>ChatGPT</span>
+            </div>
+            <div class="works-pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>Claude</span>
+            </div>
+            <div class="works-pill">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
+              <span>Gemini</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Value Proposition Grid -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">How It Works</span>
+          <h2 class="section-title">Zero effort. Real cash kickbacks.</h2>
+          <p class="section-subtitle">
+            No behavioral changes required. Keep using your favorite AI models normally. WaitWise monetizes the empty seconds you already spend waiting.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Bento 1 -->
+          <div class="bento-card bento-wide">
+            <div class="bento-icon">⚡</div>
+            <h3>1. Submit any prompt</h3>
+            <p>
+              Work normally on ChatGPT, Claude, or Gemini. As soon as you hit Enter or click Send, WaitWise detects the active generation state.
+            </p>
+            <div class="mini-tag-list">
+              <span class="mini-tag">Auto-detect</span>
+              <span class="mini-tag">Zero latency</span>
+              <span class="mini-tag">Native DOM mount</span>
+            </div>
+          </div>
+
+          <!-- Bento 2 -->
+          <div class="bento-card">
+            <div class="bento-icon">👁️</div>
+            <h3>2. Single text line renders</h3>
+            <p>
+              A single, clean, 64-character sponsored text recommendation appears in the blank space directly below your prompt while the model generates.
+            </p>
+          </div>
+
+          <!-- Bento 3 -->
+          <div class="bento-card">
+            <div class="bento-icon">⏱️</div>
+            <h3>3. 5-second dwell threshold</h3>
+            <p>
+              Once the card is visibly in view for 5 continuous seconds, a qualified impression is registered. Zero background scamming.
+            </p>
+          </div>
+
+          <!-- Bento 4 -->
+          <div class="bento-card bento-wide">
+            <div class="bento-icon">💰</div>
+            <h3>4. 50% Revenue Share Cashout</h3>
+            <p>
+              Every qualified impression credits half of the advertiser spend directly into your balance. Withdraw cash anytime via Whop ($10 minimum).
+            </p>
+            <div class="cashout-pill-row" style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px;">
+              <a href="https://whop.com" target="_blank" rel="noopener" class="cashout-badge" style="text-decoration: none; border: 1px solid rgba(255, 98, 0, 0.4); background: rgba(255, 98, 0, 0.1); cursor: pointer; display: flex; flex-direction: column; gap: 2px;">
+                <span style="color: #ff8c42; font-weight: 700;">Whop Payments &rarr;</span>
+                <strong style="color: #f1f5f9; font-size: 13px;">Instant Bank & Card</strong>
+              </a>
+              <a href="dashboard.html" class="cashout-badge" style="text-decoration: none; border: 1px solid rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.1); cursor: pointer; display: flex; flex-direction: column; gap: 2px;">
+                <span style="color: #34d399; font-weight: 700;">Live Dashboard &rarr;</span>
+                <strong style="color: #f1f5f9; font-size: 13px;">Track Earnings Live</strong>
+              </a>
+              <div class="cashout-badge">
+                <span>Minimum</span>
+                <strong>$10.00</strong>
+              </div>
+              <div class="cashout-badge">
+                <span>Revenue Share</span>
+                <strong style="color: var(--emerald-400);">50% Net</strong>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Earnings Calculator Section -->
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interactive Calculator</span>
+          <h2 class="section-title">Calculate your monthly cash kickback.</h2>
+          <p class="section-subtitle">
+            Based on average advertiser CPMs ($2.50 - $4.80) and 50% publisher revenue share.
+          </p>
+        </div>
+
+        <div class="calculator-wrapper">
+          <div class="calc-controls">
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="prompt-range">Daily AI Prompts (ChatGPT + Claude + Gemini)</label>
+                <span class="slider-val" id="prompt-display">60 prompts/day</span>
+              </div>
+              <input type="range" id="prompt-range" min="10" max="250" step="5" value="60" class="custom-range">
+              <div class="range-labels">
+                <span>Casual (10)</span>
+                <span>Pro Coder (100)</span>
+                <span>AI Power User (250)</span>
+              </div>
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="days-range">Active Days Per Month</label>
+                <span class="slider-val" id="days-display">24 days/mo</span>
+              </div>
+              <input type="range" id="days-range" min="5" max="31" step="1" value="24" class="custom-range">
+            </div>
+
+            <div class="slider-group">
+              <div class="slider-header">
+                <label for="cpm-range">Average Advertiser CPM ($)</label>
+                <span class="slider-val" id="cpm-display">$3.60 CPM</span>
+              </div>
+              <input type="range" id="cpm-range" min="2.00" max="6.00" step="0.20" value="3.60" class="custom-range">
+            </div>
+          </div>
+
+          <div class="calc-results-card">
+            <div class="calc-result-item highlight">
+              <div class="calc-label">ESTIMATED MONTHLY EARNINGS</div>
+              <div class="calc-number" id="calc-monthly-out">$7.78</div>
+              <div class="calc-subtext">50% net cash direct to your Whop balance</div>
+            </div>
+
+            <div class="calc-breakdown-grid">
+              <div class="breakdown-item">
+                <span>Annual Kickback</span>
+                <strong id="calc-annual-out">$93.31</strong>
+              </div>
+              <div class="breakdown-item">
+                <span>Total Impressions</span>
+                <strong id="calc-impressions-out">1,440</strong>
+              </div>
+              <div class="breakdown-item">
+                <span>Sub Offsets</span>
+                <strong style="color: var(--emerald-400);">~39% of ChatGPT Plus</strong>
+              </div>
+              <div class="breakdown-item">
+                <span>Payout Threshold</span>
+                <strong>Reached in ~38 days</strong>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-glow" style="width: 100%; margin-top: 24px;" data-open-modal="install">
+              <span>Start Earning With WaitWise</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform Compatibility Grid -->
+    <section class="section" id="platforms">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Supported Ecosystem</span>
+          <h2 class="section-title">Seamless on your favorite AI tools.</h2>
+          <p class="section-subtitle">
+            WaitWise content scripts automatically identify generation lifecycles across modern AI interfaces.
+          </p>
+        </div>
+
+        <div class="platforms-grid">
+          <div class="platform-card active">
+            <div class="platform-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2a10 10 0 0 0-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10A10 10 0 0 0 12 2zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/>
+              </svg>
+            </div>
+            <h4>ChatGPT (chatgpt.com)</h4>
+            <p>Full support for GPT-4o, GPT-4, Canvas, Search, and voice dictation. Adapts to dynamic React layout updates.</p>
+            <span class="status-badge-live">Live & Verified</span>
+          </div>
+
+          <div class="platform-card active">
+            <div class="platform-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h4>Claude (claude.ai)</h4>
+            <p>Full support for Claude 3.5 Sonnet, Claude Opus, and Artifacts. Zero interference with code previews.</p>
+            <span class="status-badge-live">Live</span>
+          </div>
+
+          <div class="platform-card active">
+            <div class="platform-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+              </svg>
+            </div>
+            <h4>Google Gemini (gemini.google.com)</h4>
+            <p>Full support for Gemini 1.5 Pro, Flash, and Workspace integrations. Renders above markdown streams.</p>
+            <span class="status-badge-live">Live</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy & Security Section -->
+    <section class="section" id="privacy" style="background: rgba(255, 255, 255, 0.01); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Privacy & Architecture</span>
+          <h2 class="section-title">We cannot read your prompts. Here's why.</h2>
+          <p class="section-subtitle">
+            Most browser extensions request permissions to all websites and can read everything you type. WaitWise is fundamentally engineered differently.
+          </p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Security & Data Property</th>
+                <th class="brand-col">WaitWise</th>
+                <th>Standard Ad / AI Extensions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Reads Prompt Text or AI Output</strong></td>
+                <td><span class="check-no">❌ Impossible (Zero Content Readers)</span></td>
+                <td><span class="check-yes" style="color: #f59e0b;">⚠️ Often reads full page DOM</span></td>
+              </tr>
+              <tr>
+                <td><strong>Tracks General Web Browsing History</strong></td>
+                <td><span class="check-no">❌ No (Restricted host permissions)</span></td>
+                <td><span class="check-yes" style="color: #ef4444;">⚠️ Yes (&lt;all_urls&gt; permission)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Shadow DOM Container Isolation</strong></td>
+                <td><span class="check-yes">✅ Yes (Isolated ShadowRoot)</span></td>
+                <td><span class="check-no">❌ Direct DOM manipulation</span></td>
+              </tr>
+              <tr>
+                <td><strong>Client-Side Auditable Architecture</strong></td>
+                <td><span class="check-yes">✅ 100% Unminified Client-Side Code</span></td>
+                <td><span class="check-no">❌ Proprietary / Obfuscated</span></td>
+              </tr>
+              <tr>
+                <td><strong>Direct Cash Revenue Share</strong></td>
+                <td><span class="check-yes">✅ 50% Direct Cash via Whop</span></td>
+                <td><span class="check-no">❌ Low-value points or gift cards</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advertiser Portal Teaser Section -->
+    <section class="section" id="advertisers">
+      <div class="container">
+        <div class="advertiser-card">
+          <div>
+            <span class="section-tag">For Sponsors & Advertisers</span>
+            <h2 class="section-title" style="margin-top: 12px;">Reach 100k+ AI power users at peak attention.</h2>
+            <p class="section-subtitle" style="margin-bottom: 0;">
+              Software engineers, technical founders, data scientists, and writers spend hundreds of hours per month staring intently at the generation zone.
+            </p>
+            <ul class="ad-features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>100% Guaranteed Active Viewport:</strong> Impressions only register when visible.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Zero Banner Blindness:</strong> Native single-line text embedded directly in the answer stream.</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Self-Serve Campaign Builder:</strong> Real-time ad preview, weighted CPM bidding, and instant campaign launch.</span>
+              </li>
+            </ul>
+            <a href="advertise.html" class="btn btn-primary btn-glow" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>Open Advertiser Portal & Previewer</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+          </div>
+
+          <div style="background: rgba(0,0,0,0.5); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 24px;">
+            <div style="font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 12px;">ADVERTISER PERFORMANCE STATS</div>
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div>
+                <span style="font-size: 32px; font-weight: 800; color: var(--emerald-400);">4.2%</span>
+                <p style="font-size: 12px; color: var(--text-secondary);">Average Click-Through Rate (CTR)</p>
+              </div>
+              <div>
+                <span style="font-size: 32px; font-weight: 800; color: #60a5fa;">8.4s</span>
+                <p style="font-size: 12px; color: var(--text-secondary);">Average Focused Active Dwell Time</p>
+              </div>
+              <div>
+                <span style="font-size: 32px; font-weight: 800; color: #a78bfa;">100%</span>
+                <p style="font-size: 12px; color: var(--text-secondary);">Fraud & Bot Verified (5s requirement)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Frequently Asked Questions</span>
+          <h2 class="section-title">Everything you need to know.</h2>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Does WaitWise violate OpenAI, Anthropic, or Google Terms of Service?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>No. WaitWise operates as a purely client-side browser extension within your own browser DOM, exactly like ad blockers, Dark Reader, Grammarly, or password managers. It does not scrape, reverse-engineer, or intercept the API traffic of ChatGPT, Claude, or Gemini.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How and when do I get paid?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>All earnings accrue directly in cash in US Dollars ($). Once your balance reaches the $10 minimum threshold, you can request an instant cash withdrawal through our payment partner Whop directly to your bank account, debit card, or PayPal.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What counts as a qualified impression?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>To ensure advertisers receive real value and prevent fraudulent clicks or background spam, an impression qualifies when the sponsored line is at least 50% visible in your active browser viewport for at least 5.0 seconds during response generation.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can I turn it off whenever I want?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>Yes. You can click the extension icon in your Chrome toolbar anytime to toggle WaitWise ON or OFF with a single click. When turned off, zero sponsored lines are rendered.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Can WaitWise see my confidential prompts or code?</span>
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-answer">
+              <p>No. WaitWise content script does not read or transmit your prompt inputs or AI outputs. The extension only detects turn layout anchors in the DOM solely to mount the sponsored recommendation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="bottom-cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Start earning while your AI thinks.</h2>
+          <p>Join thousands of developers, researchers, and creators getting cash kickbacks on their daily AI usage.</p>
+          <div class="hero-cta-group" style="margin-bottom: 0;">
+            <button class="btn btn-primary btn-lg btn-glow" data-open-modal="install">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Add to Chrome — 100% Free</span>
+            </button>
+            <a href="advertise.html" class="btn btn-secondary btn-lg">
+              <span>Advertise on WaitWise</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 12px;">
+            <div class="logo-icon">W</div>
+            <span>WaitWise</span>
+          </a>
+          <p>
+            The privacy-first browser extension that monetizes the waiting time while generative AI models think.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product</h5>
+          <ul>
+            <li><a href="dashboard.html" style="color: var(--emerald-400); font-weight: 600;">User Dashboard</a></li>
+            <li><a href="admin.html" style="color: #38bdf8; font-weight: 600;">Admin Backend &rarr;</a></li>
+            <li><a href="https://whop.com" target="_blank" rel="noopener" style="color: #ff8c42; font-weight: 600;">Whop Payout Partner &rarr;</a></li>
+            <li><a href="#simulator">Live Simulator</a></li>
+            <li><a href="#calculator">Earnings Calculator</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Security</h5>
+          <ul>
+            <li><a href="#" data-open-modal="privacy">Privacy Policy</a></li>
+            <li><a href="#" data-open-modal="privacy">Terms of Service</a></li>
+            <li><a href="#privacy">Host Permission Guard</a></li>
+            <li><a href="#privacy">Manifest V3 Audit</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Advertisers</h5>
+          <ul>
+            <li><a href="advertise.html">Advertiser Portal</a></li>
+            <li><a href="advertise.html#builder">Campaign Builder</a></li>
+            <li><a href="advertise.html#pricing">CPM Rates & Packs</a></li>
+            <li><a href="mailto:ads@waitwise.ai">Direct Sales</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 WaitWise. All rights reserved.</div>
+        <div>Not affiliated with OpenAI, Anthropic, or Google.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal 1: Install Extension Guide -->
+  <div class="modal-backdrop" id="modal-install">
+    <div class="modal-content">
+      <button class="modal-close-btn">&times;</button>
+      <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Install WaitWise Extension</h3>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
+        Start earning passive cash while waiting for ChatGPT, Claude, and Gemini responses.
+      </p>
+
+      <ul class="install-step-list">
+        <li class="install-step-item">
+          <span class="step-badge">1</span>
+          <div>
+            <strong>Open Extensions in Chrome</strong>
+            <p>Navigate to <code>chrome://extensions</code> in your browser address bar.</p>
+          </div>
+        </li>
+        <li class="install-step-item">
+          <span class="step-badge">2</span>
+          <div>
+            <strong>Enable Developer Mode</strong>
+            <p>Toggle the <strong>Developer mode</strong> switch in the top-right corner.</p>
+          </div>
+        </li>
+        <li class="install-step-item">
+          <span class="step-badge">3</span>
+          <div>
+            <strong>Load Unpacked Extension</strong>
+            <p>Click <strong>Load unpacked</strong> and select your built <code>dist</code> folder.</p>
+          </div>
+        </li>
+        <li class="install-step-item">
+          <span class="step-badge">4</span>
+          <div>
+            <strong>Ready to Earn!</strong>
+            <p>Open <code>chatgpt.com</code>, submit any prompt, and watch the sponsored line appear with cash rewards.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div style="display: flex; gap: 12px; margin-top: 24px;">
+        <a href="https://chromewebstore.google.com" target="_blank" rel="noopener" class="btn btn-primary" style="flex: 1;">
+          <span>Chrome Web Store</span>
+        </a>
+        <button class="btn btn-secondary modal-close-btn" style="position: static; font-size: 14px;">
+          <span>Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Advertiser Form -->
+  <div class="modal-backdrop" id="modal-advertiser">
+    <div class="modal-content">
+      <button class="modal-close-btn">&times;</button>
+      <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Advertise on WaitWise</h3>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">
+        Put your product in front of 100,000+ AI power users with guaranteed 5s active viewport visibility.
+      </p>
+
+      <form id="advertiser-quote-form" style="display: flex; flex-direction: column; gap: 16px;">
+        <div>
+          <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Your Name / Company</label>
+          <input type="text" required placeholder="e.g. Supabase, Vercel, Railway" class="prompt-input" style="width: 100%;">
+        </div>
+        <div>
+          <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Work Email</label>
+          <input type="email" required placeholder="name@company.com" class="prompt-input" style="width: 100%;">
+        </div>
+        <div>
+          <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Target Platforms</label>
+          <select class="prompt-input" style="width: 100%; cursor: pointer;">
+            <option>All Platforms (ChatGPT + Claude + Gemini)</option>
+            <option>ChatGPT Only (chatgpt.com)</option>
+            <option>Claude Only (claude.ai)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Estimated Monthly Budget</label>
+          <select class="prompt-input" style="width: 100%; cursor: pointer;">
+            <option>$500 - $2,000 / month</option>
+            <option>$2,000 - $10,000 / month</option>
+            <option>$10,000+ / month (Enterprise)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-glow" style="margin-top: 8px;">
+          <span>Submit Advertiser Request</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Privacy & Terms -->
+  <div class="modal-backdrop" id="modal-privacy">
+    <div class="modal-content" style="max-width: 680px;">
+      <button class="modal-close-btn">&times;</button>
+      <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Privacy Policy & Transparency Guarantee</h3>
+      <p style="color: var(--emerald-400); font-size: 13px; font-weight: 600; margin-bottom: 16px;">
+        Last updated: November 2026 • 100% Client-Side Manifest V3
+      </p>
+
+      <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; display: flex; flex-direction: column; gap: 14px;">
+        <p><strong>1. Zero Content Collection:</strong> WaitWise does not read, parse, copy, record, or transmit user prompts, questions, code snippets, or AI output responses. The extension's content script strictly looks for parent turn layout anchors in the DOM solely to mount the sponsored recommendation.</p>
+        <p><strong>2. Minimal Host Permissions:</strong> The extension only activates on explicitly declared host origins (<code>chatgpt.com</code>, <code>claude.ai</code>, <code>gemini.google.com</code>). It does not hold blanket web permissions.</p>
+        <p><strong>3. Shadow DOM Isolation:</strong> Sponsored cards are rendered within an encapsulated Shadow DOM tree to prevent CSS bleed, DOM leakage, or cross-origin access.</p>
+        <p><strong>4. Revenue Payouts:</strong> Earnings are tracked via unique client-generated session tokens without requiring personally identifiable information. Payouts are fulfilled securely via Whop with a $10 minimum withdrawal threshold.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="backend.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
